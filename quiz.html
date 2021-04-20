@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            background-color: #30869c;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .box {
+            border: 5px solid #81ecec;
+            width: 80vw;
+            margin: 80px auto;
+           min-height: 250px;
+        }
+
+        .question {
+            padding: 10px;
+            color: #ff9f43;
+        }
+
+        .ans {
+
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-gap: 5px;
+        }
+
+        h2 {
+            border: 1px solid orange;
+            cursor: pointer;
+            width: 100%;
+            padding: 10px;
+        }
+
+        button {
+            padding: 15px;
+            margin: 10px 54px;
+            background-color: tomato;
+            color: white;
+            border: 1px solid tomato;
+            border-radius: 6px;
+        }
+
+        #result {
+            font-size: 25px;
+            font-style: italic;
+        }
+
+        h2:hover {
+            background-color: orange;
+            color: white;
+        }
+        .welcome{
+            color: white;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="welcome">
+        <h1>Welcome to the Manish Quiz</h1>
+    </div>
+
+    <div class="box">
+        <div class="question">
+            <h1 id="ques">This is a Question</h2>
+        </div>
+        <div class="ans">
+            <h2 onclick="check(0)"></h2>
+            <h2 onclick="check(1)"></h2>
+            <h2 onclick="check(2)"></h2>
+            <h2 onclick="check(3)"></h2>
+        </div>
+        <div class="button">
+            <button id="next">Next</button>
+            <span id="result"></span>
+        </div>
+
+    </div>
+
+
+    <script>
+        var question = [
+            { question: 'First President?', answer: 'Dr Rajendra Prasad', option_a: 'Dr Rajendra Prasad', option_b: 'Jawahar lal nehru', option_c: 'Indira gandhi', option_d: 'Jai prakash narayan' },
+            { question: 'Where is India Gate Located', answer: 'Delhi', option_a: 'Patna', option_b: 'Kolkata', option_c: 'Delhi', option_d: 'Gurgaon' },
+            { question: 'Where is Taj Mahal Located', answer: 'Agra', option_a: 'Mumbai', option_b: 'Kolkata', option_c: 'kanyakumari', option_d: 'Agra' },
+            { question: 'When India Won 1st World Cup', answer: '1983', option_a: '2011', option_b: '1980', option_c: '1983', option_d: '2000' },
+            { question: 'First Prime Minister', answer: 'Jawahar lal nehru', option_a: 'Jawahar lal nehru', option_b: 'Mahatma gandhi', option_c: 'Sarojni naidu', option_d: 'Surya kumar yadav' },
+            { question: 'Team Who have Won maximum IPL trophies', answer: 'MI', option_a: 'RCB', option_b: 'CSK', option_c: 'SRH', option_d: 'MI' },
+            { question: 'What is the name of our Coaching', answer: 'Appin Technologies', option_a: 'Nishant sir classes', option_b: 'Appin Technologies', option_c: 'Appin Appin', option_d: 'Sab Kuch Appin' },
+            { question: 'What is Fullform of JS?', answer: 'JavaScript', option_a: 'JavaScript', option_b: 'Jaa Soja', option_c: 'Junior Subordinate', option_d: 'None of them' },
+            { question: 'What is Fullform of CSS', answer: 'Casecading Style sheets', option_a: 'I dont know', option_b: 'Option A', option_c: 'Obtion B', option_d: 'Casecading Style sheets' },
+            { question: 'What is the gae of Ms Dhoni', answer: '39', option_a: 'Sweet 16', option_b: '38', option_c: '39', option_d: '40' }];
+        var show = 1;
+        var count = 0;
+        var ques = document.getElementById("ques");
+        var result = document.getElementById('result');
+        ques.innerHTML = "Q " + show + " " + question[count].question;
+        var ans = document.getElementsByTagName('h2');
+        ans[0].innerHTML = question[count].option_a;
+        ans[1].innerHTML = question[count].option_b;
+        ans[2].innerHTML = question[count].option_c;
+        ans[3].innerHTML = question[count].option_d;
+
+        var next = document.getElementById('next').addEventListener('click', () => {
+            if(result.innerHTML=="")
+            {
+                alert("select one option");
+                return;
+            }
+            count++;
+            show++;
+            result.innerHTML = "";
+            ques.innerHTML = "Q " + show + " " + question[count].question;
+            ans[0].innerHTML = question[count].option_a;
+            ans[1].innerHTML = question[count].option_b;
+            ans[2].innerHTML = question[count].option_c;
+            ans[3].innerHTML = question[count].option_d;
+
+        });
+        function check(value) {
+
+            if (ans[value].innerHTML == question[count].answer) {
+
+                result.innerHTML = "Correct";
+                result.style.color = "green";
+            }
+            else {
+                result.innerHTML = "Incorrect";
+                result.style.color = "red";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
